@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kethees Shanjeevan - Technicien IT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links a.active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 0.5rem;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            display: none;
+            min-height: calc(100vh - 120px);
+            padding: 3rem 0;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        /* GRILLE DE COMPÉTENCES */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 3px solid #2563eb;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .skill-card h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #e9ecef;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 2rem);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #2563eb;
+            border: 3px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .timeline-content h3 {
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* SECTION TITLES */
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #2563eb;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-intro {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* INFO BOXES */
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #2563eb;
+        }
+
+        .info-box h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-box ul {
+            margin-left: 1.5rem;
+            color: #666;
+        }
+
+        .info-box ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* PROJET CARD */
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: #f0f4ff;
+            color: #2563eb;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">KS</a>
+            <ul class="nav-links">
+                <li><a class="nav-link active" onclick="showSection('accueil')">Accueil</a></li>
+                <li><a class="nav-link" onclick="showSection('ecole')">École</a></li>
+                <li><a class="nav-link" onclick="showSection('entreprise')">Entreprise</a></li>
+                <li><a class="nav-link" onclick="showSection('projets')">Projets</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ACCUEIL -->
+        <section id="accueil" class="section active">
+            <div class="hero">
+                <h1>Kethees Shanjeevan</h1>
+                <p>Technicien IT passionné par la résolution de problèmes</p>
+            </div>
+
+            <h2>Compétences clés</h2>
+            <p class="section-intro">Expertise dans les domaines critiques de l'informatique d'entreprise</p>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🔧 Dépannage matériel</h3>
+                    <p>Diagnostic approfondi et réparation des composants matériels. Expertise dans la résolution des pannes hardware et la maintenance préventive.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>⚙️ Virtualisation</h3>
+                    <p>Création et gestion de machines virtuelles. Configuration d'environnements virtualisés et optimisation des ressources système.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📞 Support utilisateur</h3>
+                    <p>Assistance technique en première ligne. Résolution des incidents et formation des utilisateurs aux outils informatiques.</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 3rem;">Parcours</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Début BTS SIO & Alternance Pixmania</h3>
+                        <div class="date">18 novembre 2025</div>
+                        <p>Démarrage de la formation en BTS Services Informatiques aux Organisations (option SISR) et signature du contrat d'alternance en tant que réparateur de téléphones.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Fin du BTS SIO</h3>
+                        <div class="date">Juin 2027</div>
+                        <p>Obtention du diplôme BTS Services Informatiques aux Organisations avec spécialisation en infrastructure, systèmes et réseaux.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ÉCOLE -->
+        <section id="ecole" class="section">
+            <h2>UTEC Melun</h2>
+            <p class="section-intro">Centre de formation d'apprentis spécialisé en informatique et gestion</p>
+
+            <div class="info-box">
+                <h3>À propos de l'UTEC</h3>
+                <p>L'UTEC est un centre de formation reconnu proposant des diplômes du CAP au BAC+5. Basée à Melun, en région parisienne, l'école bénéficie d'une localisation stratégique avec un accès facile aux transports en commun et aux principaux axes routiers.</p>
+            </div>
+
+            <h3 style="color: #2563eb; margin-bottom: 1.5rem;">Chiffres clés</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value">87%</div>
+                    <div class="stat-label">Taux de réussite</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">83%</div>
+                    <div class="stat-label">Taux d'insertion</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">2000</div>
+                    <div class="stat-label">Jeunes formés/an</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">50</div>
+                    <div class="stat-label">Diplômes proposés</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">1200+</div>
+                    <div class="stat-label">Entreprises partenaires</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Sites en Seine-et-Marne</div>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem;">
+                <h3>Formation - BTS SIO</h3>
+                <p><strong>Option SISR</strong> - Solutions d'Infrastructure, Systèmes et Réseaux</p>
+                <p style="margin-top: 1rem;">Partenaires: Microsoft IT Academy | Cisco Certify Network Academy</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Spécialité SISR - Compétences</h3>
+                <ul>
+                    <li><strong>Virtualisation</strong> - Créer et manipuler des machines virtuelles, configurer les environnements virtualisés</li>
+                    <li><strong>Administration réseau</strong> - Gestion des accès et des droits des utilisateurs dans l'entreprise</li>
+                    <li><strong>Monitoring et sécurité réseau</strong> - Analyser le flux du réseau, détecter les attaques, identifier et résoudre les pannes via un serveur dédié de monitoring</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ENTREPRISE -->
+        <section id="entreprise" class="section">
+            <h2>Pixmania</h2>
+            <p class="section-intro">Expert français du reconditionnement d'appareils électroniques</p>
+
+            <div class="info-box">
+                <h3>Présentation</h3>
+                <p>Pixmania est une marque française de commerce électronique spécialisée dans la vente et le reconditionnement d'appareils connectés mobiles. L'entreprise place l'économie circulaire au cœur de sa stratégie, proposant des solutions durables pour l'accès à la technologie.</p>
+                <p style="margin-top: 1rem;"><strong>Partenaires majeurs:</strong> SFR, Bouygues Telecom, Orange, Back Market</p>
+            </div>
+
+            <h3 style="color: #2563eb; margin-bottom: 1.5rem;">Chiffres clés</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value">2018</div>
+                    <div class="stat-label">Année de création</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">35</div>
+                    <div class="stat-label">Points de contrôle QC</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">🏆</div>
+                    <div class="stat-label">French Tech 120</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>Localisation</h3>
+                <p><strong>Levallois-Perret</strong> (Île-de-France) - Atelier et laboratoire de reconditionnement basé en France</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Votre service - Atelier RVR de réparation</h3>
+                <p>L'atelier RVR est le cœur opérationnel de Pixmania où les appareils sont diagnostiqués, testés et reconditionnés selon des normes de qualité strictes. Chaque appareil passe par 35 points de contrôle avant d'être approuvé.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Votre poste - Réparateur niveau 1.1</h3>
+                <p><strong>Niveau:</strong> 1.1 du classement (premiers niveaux du métier)</p>
+                <ul style="margin-top: 1rem;">
+                    <li>Réparation d'écrans et dalles tactiles</li>
+                    <li>Remplacement et diagnostic de batteries</li>
+                    <li>Remplacement de chassis et carcasses</li>
+                    <li>Travaux de soudure et micro-réparations</li>
+                    <li>Réparation généraliste de tous types de pièces</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Équipement:</strong> Utilisation de l'équipement professionnel mis à disposition par Pixmania dans l'atelier de Levallois-Perret</p>
+            </div>
+        </section>
+
+        <!-- PROJETS -->
+        <section id="projets" class="section">
+            <h2>Projets</h2>
+            <p class="section-intro">Projets réalisés durant la formation à l'UTEC</p>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Création de site web</h3>
+                    <p style="opacity: 0.9;">Projet réalisé à l'UTEC Melun</p>
+                </div>
+                <div class="project-body">
+                    <p><strong>Date de réalisation:</strong> 12 mai 2025</p>
+                    <p><strong>Contexte:</strong> Projet en groupe de 3 personnes avec des rôles distincts</p>
+
+                    <h4 style="color: #2563eb; margin-top: 1.5rem; margin-bottom: 0.8rem;">Votre rôle - Hébergement du site web</h4>
+                    <ul style="margin-left: 1.5rem; color: #666;">
+                        <li>Configuration de l'hébergement via GitHub Pages</li>
+                        <li>Transmission du code HTML et CSS</li>
+                        <li>Fourniture du lien pour accès au site internet</li>
+                        <li>Garantir l'accès autonome pour tous les membres du groupe</li>
+                    </ul>
+
+                    <h4 style="color: #2563eb; margin-top: 1.5rem; margin-bottom: 0.8rem;">Technologies utilisées</h4>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">Windows</span>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; color: #666;"><strong>Apprentissages:</strong> Gestion d'hébergement web, configuration GitHub Pages, collaboration en équipe, intégration continue</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Kethees Shanjeevan. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            
+            // Retirer la classe active des liens
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            // Afficher la section sélectionnée
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Marquer le lien comme actif
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
